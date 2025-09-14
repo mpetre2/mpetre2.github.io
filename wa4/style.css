@@ -1,0 +1,37 @@
+body{
+    background-color: #ebd8d0;
+}
+
+h1{
+    margin: center;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 40px;
+}
+
+h2{
+    font-family: "Courier New", Courier, monospace;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;          
+  gap: 50px;              
+  padding: 0;
+  margin: 10px;
+}
+
+button {
+  background-color: #454851; 
+  border: none;              
+  color: white;             
+  padding: 10px 20px;       
+  text-align: center;       
+  text-decoration: none;    
+  display: inline-block; 
+  font-family: "Courier New", Courier, monospace;   
+  font-size: 16px;          
+  border-radius: 5px;      
+  cursor: pointer;         
+}
