@@ -1,0 +1,33 @@
+.card-header{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button{
+    height: 60px; 
+    width: 60px;
+    border-radius: 50%
+}
+
+.card{
+    flex: 1 1 300px;
+    background: skyblue;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.expand-btn:hover {
+    background-color: pink;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .expand-btn:active {
+        transform: scale(0.9);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
