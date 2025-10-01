@@ -1,0 +1,746 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Theme styles */
+        body.light {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        body.dark {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark .demo-section,
+        body.dark .storage-card,
+        body.dark .demo-header,
+        body.dark .instruction {
+            background: #2d2d2d;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+
+        body.dark .code-display {
+            background: #1a1a1a;
+            border: 1px solid #444;
+        }
+
+        body.dark input,
+        body.dark textarea {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+
+        .demo-header {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .demo-header h1 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .theme-switcher {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 8px;
+        }
+
+        body.dark .theme-switcher {
+            background: #1a1a1a;
+        }
+
+        .theme-btn {
+            padding: 10px 20px;
+            border: 2px solid #1976d2;
+            background: white;
+            color: #1976d2;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            background: #1976d2;
+            color: white;
+        }
+
+        .theme-btn.active {
+            background: #1976d2;
+            color: white;
+        }
+
+        .instruction {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .instruction strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #f57c00;
+        }
+
+        .instruction ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .instruction li {
+            margin: 8px 0;
+        }
+
+        .demo-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .demo-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4CAF50;
+        }
+
+        body.dark .demo-section h2 {
+            color: #e0e0e0;
+        }
+
+        .storage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .storage-card {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .storage-card h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: normal;
+        }
+
+        .badge-persistent {
+            background: #4caf50;
+            color: white;
+        }
+
+        .badge-session {
+            background: #ff9800;
+            color: white;
+        }
+
+        .badge-limited {
+            background: #f44336;
+            color: white;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px 5px 5px 0;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #1976d2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1565c0;
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+
+        .btn-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #388e3c;
+        }
+
+        .output-box {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            min-height: 60px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .output-box .key {
+            color: #80cbc4;
+        }
+
+        .output-box .value {
+            color: #ffab91;
+        }
+
+        .output-box .empty {
+            color: #999;
+            font-style: italic;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background: #1976d2;
+            color: white;
+            font-weight: bold;
+        }
+
+        body.dark .comparison-table th {
+            background: #0d47a1;
+        }
+
+        body.dark .comparison-table td {
+            border-color: #444;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        body.dark .comparison-table tr:nth-child(even) {
+            background: #1a1a1a;
+        }
+
+        .code-display {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+
+        .code-display .comment {
+            color: #666;
+        }
+
+        .persistence-test {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        body.dark .persistence-test {
+            background: #1b5e20;
+            border-color: #4caf50;
+        }
+
+        .persistence-test h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        body.dark .persistence-test h3 {
+            color: #81c784;
+        }
+
+        .test-steps {
+            margin-left: 20px;
+        }
+
+        .test-steps li {
+            margin: 10px 0;
+        }
+
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        body.dark .highlight {
+            background: #f57f17;
+            color: white;
+        }
+    </style>
+</head>
+<body class="light">
+    <div class="demo-header">
+        <h1>🗄️ Web Storage Demo: localStorage, sessionStorage & Cookies</h1>
+        <p>Interactive demonstration of client-side storage mechanisms</p>
+        
+        <div class="theme-switcher">
+            <strong style="margin-right: 10px;">Theme Demo:</strong>
+            <button class="theme-btn active" onclick="setTheme('light')">Light Mode</button>
+            <button class="theme-btn" onclick="setTheme('dark')">Dark Mode</button>
+            <span style="margin-left: 10px; color: #666;">← Try switching themes, then refresh the page!</span>
+        </div>
+    </div>
+
+    <div class="instruction">
+        <strong>📋 Demo Instructions:</strong>
+        <ol>
+            <li><strong>Open Developer Tools:</strong> Press F12 or right-click → Inspect</li>
+            <li><strong>Find Storage Panel:</strong> 
+                <ul>
+                    <li>Chrome/Edge: Application tab → Storage section</li>
+                    <li>Firefox: Storage tab</li>
+                </ul>
+            </li>
+            <li><strong>Play with the demos below</strong> and watch the storage panels update in real-time</li>
+            <li><strong>Test persistence:</strong> Try opening in a new tab or refreshing the page</li>
+        </ol>
+    </div>
+
+    <!-- localStorage Demo -->
+    <div class="demo-section">
+        <h2>1. localStorage <span class="badge badge-persistent">Persistent</span></h2>
+        
+        <div class="storage-grid">
+            <div class="storage-card">
+                <h3>💾 Set Data</h3>
+                <div class="input-group">
+                    <label>Key:</label>
+                    <input type="text" id="ls-key" placeholder="e.g., username" value="username">
+                </div>
+                <div class="input-group">
+                    <label>Value:</label>
+                    <input type="text" id="ls-value" placeholder="e.g., JohnDoe" value="JohnDoe">
+                </div>
+                <button class="btn btn-primary" onclick="setLocalStorage()">Save to localStorage</button>
+                <button class="btn btn-danger" onclick="clearLocalStorage()">Clear All</button>
+            </div>
+
+            <div class="storage-card">
+                <h3>📖 Stored Data</h3>
+                <button class="btn btn-success" onclick="viewLocalStorage()">View All Data</button>
+                <div id="ls-output" class="output-box">
+                    <span class="empty">No data yet. Add some data and click "View All Data"</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-display">
+<span class="comment">// Save data to localStorage</span>
+localStorage.setItem('username', 'JohnDoe');
+
+<span class="comment">// Retrieve data from localStorage</span>
+const username = localStorage.getItem('username');
+
+<span class="comment">// Remove specific item</span>
+localStorage.removeItem('username');
+
+<span class="comment">// Clear all localStorage</span>
+localStorage.clear();
+        </div>
+
+        <div class="persistence-test">
+            <h3>🔬 Test Persistence:</h3>
+            <ul class="test-steps">
+                <li>Add some data using the form above</li>
+                <li><span class="highlight">Refresh this page</span> → Data persists! ✓</li>
+                <li><span class="highlight">Open this page in a new tab</span> → Data is there! ✓</li>
+                <li><span class="highlight">Close and reopen browser</span> → Data still there! ✓</li>
+                <li>localStorage data persists until explicitly deleted</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- sessionStorage Demo -->
+    <div class="demo-section">
+        <h2>2. sessionStorage <span class="badge badge-session">Session Only</span></h2>
+        
+        <div class="storage-grid">
+            <div class="storage-card">
+                <h3>💾 Set Data</h3>
+                <div class="input-group">
+                    <label>Key:</label>
+                    <input type="text" id="ss-key" placeholder="e.g., tempNote" value="tempNote">
+                </div>
+                <div class="input-group">
+                    <label>Value:</label>
+                    <textarea id="ss-value" rows="3" placeholder="e.g., This is a temporary note">Draft content here...</textarea>
+                </div>
+                <button class="btn btn-primary" onclick="setSessionStorage()">Save to sessionStorage</button>
+                <button class="btn btn-danger" onclick="clearSessionStorage()">Clear All</button>
+            </div>
+
+            <div class="storage-card">
+                <h3>📖 Stored Data</h3>
+                <button class="btn btn-success" onclick="viewSessionStorage()">View All Data</button>
+                <div id="ss-output" class="output-box">
+                    <span class="empty">No session data yet. Add some data and click "View All Data"</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-display">
+<span class="comment">// Save data to sessionStorage</span>
+sessionStorage.setItem('tempNote', 'Draft content');
+
+<span class="comment">// Retrieve data</span>
+const note = sessionStorage.getItem('tempNote');
+
+<span class="comment">// Clear sessionStorage</span>
+sessionStorage.clear();
+        </div>
+
+        <div class="persistence-test">
+            <h3>🔬 Test Persistence:</h3>
+            <ul class="test-steps">
+                <li>Add some data using the form above</li>
+                <li><span class="highlight">Refresh this page</span> → Data persists! ✓</li>
+                <li><span class="highlight">Open this page in a NEW TAB</span> → Data is GONE! ✗</li>
+                <li><span class="highlight">Close this tab</span> → Data is deleted permanently</li>
+                <li>sessionStorage is isolated per tab/window</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Cookies Demo -->
+    <div class="demo-section">
+        <h2>3. Cookies <span class="badge badge-limited">4KB Limit</span></h2>
+        
+        <div class="storage-grid">
+            <div class="storage-card">
+                <h3>🍪 Set Cookie</h3>
+                <div class="input-group">
+                    <label>Cookie Name:</label>
+                    <input type="text" id="cookie-key" placeholder="e.g., sessionID" value="userPref">
+                </div>
+                <div class="input-group">
+                    <label>Cookie Value:</label>
+                    <input type="text" id="cookie-value" placeholder="e.g., abc123" value="enabled">
+                </div>
+                <div class="input-group">
+                    <label>Expires in (days):</label>
+                    <input type="number" id="cookie-days" placeholder="7" value="7" min="1">
+                </div>
+                <button class="btn btn-primary" onclick="setCookie()">Save Cookie</button>
+                <button class="btn btn-danger" onclick="clearAllCookies()">Clear All Cookies</button>
+            </div>
+
+            <div class="storage-card">
+                <h3>📖 Current Cookies</h3>
+                <button class="btn btn-success" onclick="viewCookies()">View All Cookies</button>
+                <div id="cookie-output" class="output-box">
+                    <span class="empty">No cookies yet. Add a cookie and click "View All Cookies"</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-display">
+<span class="comment">// Set a cookie (expires in 7 days)</span>
+document.cookie = "username=JohnDoe; max-age=" + (7*24*60*60) + "; path=/";
+
+<span class="comment">// Read all cookies</span>
+const cookies = document.cookie;
+
+<span class="comment">// Delete a cookie (set expiration to past)</span>
+document.cookie = "username=; max-age=0; path=/";
+        </div>
+
+        <div class="persistence-test">
+            <h3>🔬 Cookie Characteristics:</h3>
+            <ul class="test-steps">
+                <li><strong>Sent with requests:</strong> Cookies are sent to server with every HTTP request</li>
+                <li><strong>Size limit:</strong> Only 4KB per cookie</li>
+                <li><strong>Expiration:</strong> Can set expiration date (unlike localStorage)</li>
+                <li><strong>Privacy:</strong> Subject to GDPR and cookie consent laws</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="demo-section">
+        <h2>📊 Storage Comparison</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>localStorage</th>
+                    <th>sessionStorage</th>
+                    <th>Cookies</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Capacity</strong></td>
+                    <td>5-10 MB</td>
+                    <td>5-10 MB</td>
+                    <td>4 KB</td>
+                </tr>
+                <tr>
+                    <td><strong>Persistence</strong></td>
+                    <td>Until deleted</td>
+                    <td>Until tab closed</td>
+                    <td>Until expiration</td>
+                </tr>
+                <tr>
+                    <td><strong>Sent to Server</strong></td>
+                    <td>No</td>
+                    <td>No</td>
+                    <td>Yes (every request)</td>
+                </tr>
+                <tr>
+                    <td><strong>Accessible from</strong></td>
+                    <td>Any window, same origin</td>
+                    <td>Same tab only</td>
+                    <td>Any window, same origin</td>
+                </tr>
+                <tr>
+                    <td><strong>Best For</strong></td>
+                    <td>User preferences, settings</td>
+                    <td>Form drafts, temp data</td>
+                    <td>Authentication, tracking</td>
+                </tr>
+                <tr>
+                    <td><strong>Privacy Concerns</strong></td>
+                    <td>Medium</td>
+                    <td>Low</td>
+                    <td>High (GDPR applies)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Theme Management (using localStorage)
+        function setTheme(theme) {
+            document.body.className = theme;
+            localStorage.setItem('theme', theme);
+            
+            // Update button states
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Load saved theme on page load
+        window.addEventListener('load', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.className = savedTheme;
+            
+            // Update button states
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(savedTheme)) {
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        // localStorage functions
+        function setLocalStorage() {
+            const key = document.getElementById('ls-key').value;
+            const value = document.getElementById('ls-value').value;
+            if (key && value) {
+                localStorage.setItem(key, value);
+                alert(`Saved to localStorage!\nKey: "${key}"\nValue: "${value}"\n\nCheck Application tab in DevTools!`);
+                viewLocalStorage();
+            }
+        }
+
+        function viewLocalStorage() {
+            const output = document.getElementById('ls-output');
+            let html = '';
+            
+            if (localStorage.length === 0) {
+                html = '<span class="empty">localStorage is empty</span>';
+            } else {
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    const value = localStorage.getItem(key);
+                    html += `<div><span class="key">${key}</span>: <span class="value">${value}</span></div>`;
+                }
+            }
+            output.innerHTML = html;
+        }
+
+        function clearLocalStorage() {
+            if (confirm('Clear all localStorage data (including theme)?')) {
+                localStorage.clear();
+                viewLocalStorage();
+                alert('localStorage cleared!');
+            }
+        }
+
+        // sessionStorage functions
+        function setSessionStorage() {
+            const key = document.getElementById('ss-key').value;
+            const value = document.getElementById('ss-value').value;
+            if (key && value) {
+                sessionStorage.setItem(key, value);
+                alert(`Saved to sessionStorage!\nKey: "${key}"\n\nTry opening a new tab - this data won't be there!`);
+                viewSessionStorage();
+            }
+        }
+
+        function viewSessionStorage() {
+            const output = document.getElementById('ss-output');
+            let html = '';
+            
+            if (sessionStorage.length === 0) {
+                html = '<span class="empty">sessionStorage is empty</span>';
+            } else {
+                for (let i = 0; i < sessionStorage.length; i++) {
+                    const key = sessionStorage.key(i);
+                    const value = sessionStorage.getItem(key);
+                    html += `<div><span class="key">${key}</span>: <span class="value">${value}</span></div>`;
+                }
+            }
+            output.innerHTML = html;
+        }
+
+        function clearSessionStorage() {
+            sessionStorage.clear();
+            viewSessionStorage();
+            alert('sessionStorage cleared!');
+        }
+
+        // Cookie functions
+        function setCookie() {
+            const name = document.getElementById('cookie-key').value;
+            const value = document.getElementById('cookie-value').value;
+            const days = document.getElementById('cookie-days').value;
+            
+            if (name && value) {
+                const maxAge = days * 24 * 60 * 60; // Convert days to seconds
+                document.cookie = `${name}=${value}; max-age=${maxAge}; path=/`;
+                alert(`Cookie set!\nName: "${name}"\nValue: "${value}"\nExpires in: ${days} days\n\nCheck Application → Cookies in DevTools!`);
+                viewCookies();
+            }
+        }
+
+        function viewCookies() {
+            const output = document.getElementById('cookie-output');
+            const cookies = document.cookie;
+            
+            if (!cookies) {
+                output.innerHTML = '<span class="empty">No cookies set</span>';
+            } else {
+                const cookieArray = cookies.split('; ');
+                let html = '';
+                cookieArray.forEach(cookie => {
+                    const [key, value] = cookie.split('=');
+                    html += `<div><span class="key">${key}</span>: <span class="value">${value}</span></div>`;
+                });
+                output.innerHTML = html;
+            }
+        }
+
+        function clearAllCookies() {
+            const cookies = document.cookie.split('; ');
+            cookies.forEach(cookie => {
+                const name = cookie.split('=')[0];
+                document.cookie = `${name}=; max-age=0; path=/`;
+            });
+            viewCookies();
+            alert('All cookies cleared!');
+        }
+
+        // Initialize views on load
+        window.addEventListener('load', function() {
+            viewLocalStorage();
+            viewSessionStorage();
+            viewCookies();
+        });
+    </script>
+</body>
+</html>

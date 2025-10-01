@@ -1,0 +1,334 @@
+/* Mainly home page styles, and what is at the top of the page*/
+body {
+    display: grid;
+    grid-template-areas:
+        "nav"
+        "main";
+    grid-template-rows: auto 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.main-nav{
+    grid-area: nav;
+    display: grid;
+    grid-template-areas:
+        "brand"
+        "menu";
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    padding: 25px;
+}
+
+
+.nav-brand{
+    grid-area: brand;
+    align-self: center;
+    font-size: 35px;
+    margin-bottom: 5px;
+    justify-self: center;
+    text-align: center;
+}
+
+
+.nav-toggle{
+    grid-area: toggle;
+    display: none;
+}
+
+
+.nav-menu{
+    grid-area: menu;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.main-nav ul{
+    list-style: none;
+}
+.nav-menu a{
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+    margin: 20px;
+    color: white;
+    background-color: rgb(0, 128, 102);
+    border: solid 1px white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color .5s, color .5s, border .5s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    box-sizing: border-box
+}
+.nav-menu a:hover{
+    background-color: white;
+    color: rgb(0, 128, 102);
+    border: solid 1px rgb(0, 128, 102);
+    cursor: pointer;
+}
+a:visited{
+    text-decoration: none;
+}
+.nav-toggle{
+    display: none;
+}
+
+
+@media (max-width: 768px){
+    .nav-brand{
+        align-self: center;
+        font-size: 36px;
+    }
+    .nav-menu{
+        display: none;
+    }
+    .nav-menu.show{
+        position: absolute;
+        top: 75px;
+        right:0px;
+        left: 0px;
+        background-color: rgb(0, 128, 102);
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-direction: column;
+       
+    }
+    .nav-menu a {
+        margin: 20px;
+        font-size: 20px;
+        border: none;
+        border-radius: 0px;
+        cursor: pointer;
+        transition: background-color .5s, color .5s, border .5s;
+    }
+    .nav-toggle{
+        position: absolute;
+        top: 25px;
+        right:20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 50px;
+        height: 50px;
+        padding: 6px;
+        border: none;
+        background-color: rgb(0, 128, 102);
+        border-radius: 5px;
+        transition-duration: 0.8s;
+    }
+    .nav-toggle span{
+        margin: 3px;
+        height: 5px;
+        border-radius: 2px;
+        background-color: white;
+        display: block;
+    }
+
+
+    .nav-toggle:hover,
+    .nav-toggle:focus {
+        background-color: white;
+        outline: 'rgb(0, 128, 102) solid 2px';
+    }
+
+
+    .nav-toggle:hover span,
+    .nav-toggle:focus span {
+        background-color: rgb(0, 128, 102);
+    }
+}
+
+
+/* Events Page Styles */
+.events-page {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "filters"
+    "sidebar"
+    "events"
+    "footer";
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+.events-header {
+    grid-area: header;
+    text-align: center;
+}
+.events-filters {
+    grid-area: filters;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.events-sidebar {
+    grid-area: sidebar;
+    background: white;
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+}
+
+
+.events-list {
+    grid-area: events;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+ }
+
+
+.events-footer {
+    grid-area: footer;
+    text-align: center;
+    color: #666;
+    padding: 12px 0;
+}
+
+
+.event-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff;
+}
+
+
+.event-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #008066;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+
+.event-btn:hover {
+    background: #006955;
+}
+
+
+@media (min-width: 800px) {
+  .events-page {
+    grid-template-areas:
+      "header  header"
+      "filters filters"
+      "sidebar events"
+      "footer  footer";
+    grid-template-columns: 280px 1fr;
+  }
+
+
+  .events-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* WEEK 7 ICA THEME ---------------------------------------------------------------------------------------------------------------*/
+
+/* LIGHT Theme (Default) */
+body.light {
+    /* Background Color */
+    background-color: white;
+    /* Text Color */
+    color: #333;
+}
+
+.nav-toggle span {
+    background-color: white;
+}
+.nav-toggle:hover span, .nav-toggle:focus span {
+    background-color: rgb(0, 128, 102);
+}
+
+
+/* Dark Theme */
+body.dark {
+    /* Background Color */
+    background-color: #121212;
+    /* Text color for main content */
+    color: #e0e0e0;
+}
+
+
+body.dark .nav-brand {
+    color: #e0e0e0;
+}
+
+/* Change the background of the mobile menu when shown */
+@media (max-width: 768px){
+    body.dark .nav-menu.show {
+        background-color: #004d40; 
+    }
+}
+
+/* Change the mobile toggle button colors */
+body.dark .nav-toggle {
+    background-color: #004d40;
+}
+
+body.dark .nav-toggle span {
+    background-color: #e0e0e0;
+}
+
+body.dark .nav-toggle:hover,
+body.dark .nav-toggle:focus {
+    background-color: #e0e0e0;
+    outline: #008066 solid 2px;
+}
+
+body.dark .nav-toggle:hover span,
+body.dark .nav-toggle:focus span {
+    background-color: #004d40; 
+}
+
+/* Change the links for dark mode */
+body.dark .nav-menu a {
+    color: #e0e0e0;
+    background-color: #004d40; 
+    border: solid 1px #e0e0e0;
+}
+
+body.dark .nav-menu a:hover {
+    background-color: #008066; 
+    color: #fff;
+    border: solid 1px #008066;
+}
+
+body.dark .home-main h1,
+body.dark .home-main p {
+    color: #e0e0e0;
+}
+
+
+body.dark .events-sidebar,
+body.dark .event-card {
+    background: #1f1f1f;
+    border: 1px solid #333;
+    color: #e0e0e0;
+}
