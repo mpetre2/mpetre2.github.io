@@ -1,9 +1,9 @@
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
-const EXPIRATION_DURATION = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+const EXPIRATION_DURATION = 30 * 24 * 60 * 60 * 1000;
 const THEME_DATA_KEY = 'userThemeData';
-const OPT_OUT_KEY = 'themeOptOut'; // Key for the opt-out setting
+const OPT_OUT_KEY = 'themeOptOut';
 
 function showMenu() {
     var shown = navMenu.classList.toggle("show");
@@ -27,45 +27,41 @@ function checkKey(key_code) {
 }
 
 navToggle.addEventListener('click', showMenu);
-
 navToggle.addEventListener('keydown', (e) => {
-  if (e.key === " " || e.key === "spacebar" || e.key === "Enter") {
-    e.preventDefault();
-    showMenu();
-  }
+    if (e.key === " " || e.key === "spacebar" || e.key === "Enter") {
+        e.preventDefault();
+        showMenu();
+    }
 });
 
-//filter code for the events page
 const filterSelect = document.getElementById('event-type');
 const eventCards = document.querySelectorAll('.event-card');
 
 function applyEventFilter() {
-  if (filterSelect){
-    const value = filterSelect.value
-    eventCards.forEach(card => {
-      const type = card.dataset.type
-      card.hidden = !(value === 'all' || type === value);
-    })
-  }
+    if (filterSelect){
+        const value = filterSelect.value
+        eventCards.forEach(card => {
+            const type = card.dataset.type
+            card.hidden = !(value === 'all' || type === value);
+        })
+    }
 }
 if (filterSelect) {
     applyEventFilter();
     filterSelect.addEventListener('change', applyEventFilter);
 
-    // keyboard options
     filterSelect.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') applyEventFilter();
     });
 }
 
-
-//WEEK 7 IN CLASS ACTIVITY (THEME)------------------------------------------------------------------------------------------------------
+// WEEK 7 IN CLASS ACTIVITY (THEME)------------------------------------------------------------------------------------------------------
 
 function toggleDataCollection(isOptedOut) {
     if (isOptedOut) {
         localStorage.setItem(OPT_OUT_KEY, 'true');
         localStorage.removeItem(THEME_DATA_KEY);
-        setTheme('light', true); 
+        setTheme('light', true);
     } else {
         localStorage.removeItem(OPT_OUT_KEY);
     }
@@ -75,6 +71,10 @@ function initializePrivacyControls() {
     const optOutCheckbox = document.getElementById('theme-opt-out');
     if (optOutCheckbox) {
         optOutCheckbox.checked = localStorage.getItem(OPT_OUT_KEY) === 'true';
+
+        optOutCheckbox.addEventListener('change', () => {
+            toggleDataCollection(optOutCheckbox.checked);
+        });
     }
 }
 
@@ -92,31 +92,29 @@ function clearAllLocalData() {
     alert('All saved preferences (theme and opt-out) have been cleared.');
 }
 
-// Save user's theme choice and apply it
-function setTheme(themeName, force = false) {
+function setTheme(themeName, isInitialLoad = false) {
+    const currentTheme = themeName || 'light';
     const isOptedOut = localStorage.getItem(OPT_OUT_KEY) === 'true';
-
-    if (!isOptedOut) {
+    
+    if (!isOptedOut && !isInitialLoad) {
         const now = new Date().getTime();
         const expiryTime = now + EXPIRATION_DURATION;
         
         const themeData = {
-            theme: themeName,
+            theme: currentTheme,
             expiry: expiryTime
         };
-
         localStorage.setItem(THEME_DATA_KEY, JSON.stringify(themeData));
-    } else if (!force) {
-        localStorage.removeItem(THEME_DATA_KEY);
     }
     
-    document.body.className = themeName;
+    document.body.className = currentTheme; 
+
     document.querySelectorAll('.theme-btn').forEach(button => {
         const buttonText = button.textContent.toLowerCase();
         
         button.classList.remove('active');
 
-        if (buttonText.includes(themeName) && (buttonText.includes('light') || buttonText.includes('dark'))) {
+        if (buttonText.includes(currentTheme) && (buttonText.includes('light') || buttonText.includes('dark'))) {
             button.classList.add('active');
         }
     });
@@ -149,15 +147,34 @@ function getSavedTheme() {
     }
 }
 
-
-// Load saved theme on page load 
-const savedTheme = getSavedTheme();
-
-setTheme(savedTheme || 'light', true); 
-
-initializePrivacyControls();
-
 function resetTheme() {
-    localStorage.removeItem(THEME_DATA_KEY);
+    localStorage.removeItem(THEME_DATA_KEY); 
     setTheme('light', true); 
+    
+    const optOutCheckbox = document.getElementById('theme-opt-out');
+    if (optOutCheckbox && localStorage.getItem(OPT_OUT_KEY) !== 'true') {
+        alert('Theme preference reset to default (light).');
+    }
 }
+
+
+// THEME INITIALIZATION AND EVENT LISTENER SETUP
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const savedTheme = getSavedTheme();
+    setTheme(savedTheme, true); 
+
+    initializePrivacyControls(); 
+
+    document.querySelectorAll('.theme-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const themeToSet = e.currentTarget.textContent.toLowerCase().includes('dark') ? 'dark' : 'light';
+            setTheme(themeToSet); 
+        });
+    });
+
+    const resetButton = document.getElementById('theme-reset-button');
+    if (resetButton) {
+        resetButton.addEventListener('click', resetTheme);
+    }
+});
