@@ -12,6 +12,7 @@
         
     <button class="theme-btn active" onclick="setTheme('light')">Light Mode</button>
     <button class="theme-btn" onclick="setTheme('dark')">Dark Mode</button>
+    <button class="theme-btn" onclick="resetTheme()">Reset Theme</button>
 
     <nav class="main-nav">
     <div class="nav-brand">Big Brothers Big Sisters.</div>
@@ -29,9 +30,43 @@
         </ul>
     </nav>
     <main class="home-main">
-        <h1>Home</h1>
+ <h1>Home</h1>
         <p>Welcome to the Big Brothers Big Sisters website. Here you can find information about volunteer opportunities, youth programs, and upcoming events.</p>
-    </main>
+        
+        <hr style="margin: 40px auto; width: 50%;">
+        
+        <section id="privacy-statement">
+            <h2>Our Privacy Statement</h2>
+            <p>We believe in keeping your browsing experience private. Here is a clear breakdown of the minimal data we collect and how you control it.</p>
+            
+            <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                
+                <h3>What Data We Collect & Why:</h3>
+                <p>We collect one piece of data: your Theme Preference (Dark or Light Mode). We use this to save your last chosen display mode so you don't have to change it every time you visit or refresh the page, ensuring a consistent and more enjoyable user experience.</p>
+
+                <h3>Storage & Expiration:</h3>
+                <p>This data is stored locally in your browser (Local Storage). It is automatically deleted after 30 days of your last visit. You can manually delete it at any time using the control below.</p>
+                
+                <h3>Your Controls:</h3>
+                <p>You are in complete control of this data.</p>
+                
+                <button class="theme-btn" onclick="clearAllLocalData()" style="background-color: #e74c3c; border-color: #c0392b; color: white;">Clear All Saved Preferences</button>
+                
+                <div style="margin-top: 15px;">
+                    <label for="theme-opt-out">
+                        <input type="checkbox" id="theme-opt-out" onchange="toggleDataCollection(this.checked)"> 
+                        Opt-out of Theme Persistence (Do not save my theme preference)
+                    </label>
+                </div>
+            </div>
+            
+            <p id="external-data-status" style="margin-top: 20px; font-style: italic; color: #008066;">
+                This website does not fetch any external data; all preferences are stored locally.
+            </p>
+            
+        </section>
+        
+        </main>
     <script src="script.js"></script>
 </body>
 </html>

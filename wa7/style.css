@@ -85,10 +85,10 @@ a:visited{
 }
 
 
-@media (max-width: 768px){
+@media (max-width: 480px){
     .nav-brand{
         align-self: center;
-        font-size: 36px;
+        font-size: clamp(25px, 5vw, 35px);
     }
     .nav-menu{
         display: none;
@@ -153,6 +153,47 @@ a:visited{
     }
 }
 
+@media (min-width: 481px) and (max-width: 768px){
+    .nav-brand{
+        align-self: center;
+        font-size: clamp(30px, 5vw, 35px);
+    }
+    .nav-menu {
+       display: grid;
+       grid-auto-flow: column;
+       gap: 15px;
+       justify-content: center;
+    }
+
+    .nav-menu a {
+        margin: 10px;
+        font-size: clamp(15px, 3vw, 20px);
+        width: 120px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .nav-brand {
+        font-size: 40px;
+    }
+    .nav-menu {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .nav-menu a {
+        width: 150px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .events-list{
+        grid-template-columns: repeat(3, 1fr)
+    }
+
 
 /* Events Page Styles */
 .events-page {
@@ -198,6 +239,7 @@ a:visited{
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
+    container-type: inline-size;
  }
 
 
@@ -232,21 +274,14 @@ a:visited{
     background: #006955;
 }
 
-
-@media (min-width: 800px) {
-  .events-page {
-    grid-template-areas:
-      "header  header"
-      "filters filters"
-      "sidebar events"
-      "footer  footer";
-    grid-template-columns: 280px 1fr;
+@container (min-width: 520px) {
+  .event-card {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: start;
+    gap: 12px;
   }
-
-
-  .events-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+}
 }
 
 /* WEEK 7 ICA THEME ---------------------------------------------------------------------------------------------------------------*/
@@ -281,7 +316,7 @@ body.dark .nav-brand {
 }
 
 /* Change the background of the mobile menu when shown */
-@media (max-width: 768px){
+@media (max-width: 480px){
     body.dark .nav-menu.show {
         background-color: #004d40; 
     }
