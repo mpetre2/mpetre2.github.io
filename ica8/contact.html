@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light">
+  <button class="theme-btn active">Light Mode</button>
+  <button class="theme-btn">Dark Mode</button>
+  <button class="theme-btn" id="theme-reset-button">Reset Theme</button>
+
+  <nav class="main-nav">
+    <div class="nav-brand">Big Brothers Big Sisters.</div>
+
+    <button
+      class="nav-toggle"
+      aria-label="Toggle navigation menu"
+      aria-controls="primary-menu"
+      aria-expanded="false"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu" id="primary-menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="volunteers.html">Volunteers</a></li>
+      <li><a href="youth.html">Youth</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="home-main">
+    <h1>Contact Us</h1>
+
+    <form action="https://formsubmit.co/mape5479@colorado.edu" method="POST">
+      <input type="hidden" name="_next" value="contactmessage.html">
+      <input type="hidden" name="_subject" value="New Contact Form Submission">
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <section id="privacy-statement" style="margin-top: 40px;">
+      <h2>Your Privacy</h2>
+      <p>This page also respects your theme preferences. You can clear saved data or opt out below.</p>
+
+      <button class="theme-btn" style="background-color:#e74c3c;border-color:#c0392b;color:white;" onclick="clearAllLocalData()">
+        Clear All Saved Preferences
+      </button>
+
+      <div style="margin-top: 15px;">
+        <label for="theme-opt-out">
+          <input type="checkbox" id="theme-opt-out">
+          Opt-out of Theme Persistence (Do not save my theme preference)
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
