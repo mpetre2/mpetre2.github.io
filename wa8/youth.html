@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Youth • Opportunities & Stories</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="light">
@@ -36,7 +36,10 @@
       <p>Find programs, events, and stories from other Littles.</p>
     </header>
 
-    <section class="grid-2">
+    <!-- Added a hidden heading so this section has an identifying heading -->
+    <section class="grid-2" aria-labelledby="overview-title">
+      <h2 id="overview-title" class="visually-hidden">Overview & Scholarships</h2>
+
       <article class="card">
         <h2>What to Expect</h2>
         <ul>
@@ -52,6 +55,7 @@
           <li><a href="#" rel="noopener">Local education grants</a></li>
           <li><a href="#" rel="noopener">STEM clubs &amp; coding camps</a></li>
           <li><a href="#" rel="noopener">Teen leadership workshops</a></li>
+          <li><a href="events.html" rel="noopener">Upcoming Events</a></li>
         </ul>
       </article>
     </section>
@@ -87,11 +91,3 @@
   <script src="script.js" defer></script>
 </body>
 </html>
-            <li><a href="events.html">Upcoming Events</a></li>
-          </ul>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <script src="script.js" defer></script>
