@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volunteers • Training, Safety, Ideas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="light">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="theme-controls" role="group" aria-label="Theme">
+    <button class="theme-btn active" type="button" onclick="setTheme('light')">Light Mode</button>
+    <button class="theme-btn" type="button" onclick="setTheme('dark')">Dark Mode</button>
+    <button class="theme-btn" type="button" onclick="resetTheme()">Reset Theme</button>
+  </div>
+
+  <nav class="main-nav" aria-label="Primary">
+    <div class="nav-brand">Big Brothers Big Sisters • CO</div>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="volunteers.html" aria-current="page">Volunteers</a></li>
+      <li><a href="youth.html">Youth</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="page">
+    <header class="page-header">
+      <h1>For Volunteers (Bigs)</h1>
+      <p>Start strong with training, keep matches safe, and spark great activities.</p>
+    </header>
+
+    <section id="training" class="card" aria-labelledby="training-title">
+      <h2 id="training-title">Training Guides</h2>
+      <details>
+        <summary>Getting Started (Onboarding)</summary>
+        <ul>
+          <li>Role overview and expectations (1–2 hrs)</li>
+          <li>Communication basics with Littles &amp; families</li>
+          <li>Scheduling your first meetup</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Ongoing Support &amp; Coaching</summary>
+        <ul>
+          <li>Goal setting together</li>
+          <li>Check-in cadence with program staff</li>
+          <li>Troubleshooting common challenges</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Download Center</summary>
+        <ul>
+          <li><a href="#" download>Mentor Handbook (PDF)</a></li>
+          <li><a href="#" download>Conversation Starters (PDF)</a></li>
+          <li><a href="#" download>Monthly Planner (PDF)</a></li>
+        </ul>
+      </details>
+    </section>
+
+    <section id="safety" class="card" aria-labelledby="safety-title">
+      <h2 id="safety-title">Safety &amp; Youth Protection</h2>
+      <p><strong>Always follow the two-deep rule</strong>, meet in approved locations, and keep parents/guardians informed.</p>
+      <ul class="checklist">
+        <li>Share schedules with guardians</li>
+        <li>No unsupervised transportation without permission</li>
+        <li>Report concerns to staff immediately</li>
+      </ul>
+      <p>
+        Questions about a situation?
+        <a class="btn ghost" href="contact.html">Contact Program Staff</a>
+      </p>
+    </section>
+
+    <section id="ideas" class="card" aria-labelledby="ideas-title">
+      <h2 id="ideas-title">Activity Ideas (Free or Low-Cost)</h2>
+      <div class="tags">
+        <button type="button" class="chip" data-tag="all">All</button>
+        <button type="button" class="chip" data-tag="outdoors">Outdoors</button>
+        <button type="button" class="chip" data-tag="learning">Learning</button>
+        <button type="button" class="chip" data-tag="arts">Arts</button>
+      </div>
+      <ul id="idea-list" class="idea-list">
+        <li data-tags="outdoors">Park clean-up + picnic</li>
+        <li data-tags="learning">Library scavenger hunt</li>
+        <li data-tags="arts">Free museum day drawing</li>
+        <li data-tags="outdoors learning">Star-gazing &amp; constellations</li>
+        <li data-tags="arts learning">DIY photo journal</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="small">&copy; <span id="year"></span> BBBS Colorado — Community Hub</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+        <h3>Annual Volunteer Picnic</h3>
+        <p><strong>Sat, Aug 24 • 12:00–3:00 PM</strong></p>
+        <p>City Park, Denver</p>
+        <a class="btn" href="#">RSVP Here</a>
+      </article>
+    </div>
+  </section>
+
+    <section class="card" aria-labelledby="resources-title">
+      <h2 id="resources-title">Additional Resources</h2>
+      <ul>
+        <li><a href="#">Crisis Helplines</a></li>
+        <li><a href="#">Community Partners</a></li>
+        <li><a href="#">Mental Health Support</a></li>
+      </ul>
+    </section>

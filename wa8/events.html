@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events • Find Something to Join</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="light">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="theme-controls" role="group" aria-label="Theme">
+    <button class="theme-btn active" type="button" onclick="setTheme('light')">Light Mode</button>
+    <button class="theme-btn" type="button" onclick="setTheme('dark')">Dark Mode</button>
+    <button class="theme-btn" type="button" onclick="resetTheme()">Reset Theme</button>
+  </div>
+
+  <nav class="main-nav" aria-label="Primary">
+    <div class="nav-brand">Big Brothers Big Sisters • CO</div>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="volunteers.html">Volunteers</a></li>
+      <li><a href="youth.html">Youth</a></li>
+      <li><a href="events.html" aria-current="page">Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="events-page">
+    <header class="events-header">
+      <h1>Events</h1>
+      <p>See what’s coming up and find something to join.</p>
+    </header>
+
+    <section class="events-filters">
+      <h2>Filter Events</h2>
+      <label for="event-type">Filter by type:</label>
+      <select id="event-type">
+        <option value="all">All</option>
+        <option value="info">Info Session</option>
+        <option value="family">Family Event</option>
+        <option value="training">Volunteer Training</option>
+      </select>
+    </section>
+
+    <aside class="events-sidebar">
+      <h2>Quick Links</h2>
+      <ul>
+        <li><a href="#">Monthly Calendar</a></li>
+        <li><a href="#">Volunteer Sign-Up</a></li>
+        <li><a href="#">Locations</a></li>
+      </ul>
+    </aside>
+
+    <section id ="events-list" class="events-list" aria-live="polite">
+      <h2>Upcoming Events</h2>
+      <article class="event-card" data-type="info">
+        <h3>Mentor Info Night</h3>
+        <p><strong>Oct 10 • 6:00–7:30 PM</strong></p>
+        <p>Denver HQ</p>
+        <a class="event-btn" href="#">More Info</a>
+      </article>
+
+      <article class="event-card" data-type="family">
+        <h3>Family Picnic</h3>
+        <p><strong>Oct 19 • 11:00 AM–2:00 PM</strong></p>
+        <p>Washington Park</p>
+        <a class="event-btn" href="#">More Info</a>
+      </article>
+
+      <article class="event-card" data-type="training">
+        <h3>Volunteer Training</h3>
+        <p><strong>Nov 2 • 9:00 AM–12:00 PM</strong></p>
+        <p>Online</p>
+        <a class="event-btn" href="#">More Info</a>
+      </article>
+    </section>
+
+    <footer class="events-footer">
+      <p>&copy; Big Brothers Big Sisters</p>
+    </footer>
+  </main>
+    <script src="script.js" defer></script>
+</body>
+</html>

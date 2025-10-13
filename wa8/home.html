@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home • Big Brothers Big Sisters of Colorado (Community Hub)</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="BBBS Colorado community hub: quick resources for Bigs, Littles, and Families—training, safety, events, and support." />
+</head>
+
+<body class="light">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="theme-controls" role="group" aria-label="Theme">
+    <button class="theme-btn active" type="button" onclick="setTheme('light')">Light Mode</button>
+    <button class="theme-btn" type="button" onclick="setTheme('dark')">Dark Mode</button>
+    <button class="theme-btn" type="button" onclick="resetTheme()">Reset Theme</button>
+  </div>
+
+  <nav class="main-nav" aria-label="Primary">
+    <div class="nav-brand">Big Brothers Big Sisters • CO</div>
+
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a href="home.html" aria-current="page">Home</a></li>
+      <li><a href="volunteers.html">Volunteers</a></li>
+      <li><a href="youth.html">Youth</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="home-main">
+    <header class="hero">
+      <div class="hero-text">
+        <h1>Welcome to the BBBS Colorado Community Hub</h1>
+        <p>One simple place for Bigs, Littles, and Families to find training, safety info, event sign-ups, and support.</p>
+        <div class="hero-cta">
+          <a class="btn" href="volunteers.html">Start as a Big</a>
+          <a class="btn ghost" href="youth.html">Explore for Littles</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="dashboard" aria-labelledby="dash-title">
+      <h2 id="dash-title">Quick Dashboard</h2>
+      <div class="dash-grid">
+        <article class="card">
+          <h3>Log Match Hours</h3>
+          <form id="hours-form">
+            <label for="hours-date">Date</label>
+            <input id="hours-date" name="date" type="date" required />
+
+            <label for="hours-amount">Hours</label>
+            <input id="hours-amount" name="hours" type="number" min="0" step="0.25" required aria-describedby="hours-help" />
+            <small id="hours-help">Tip: you can log partial hours (e.g., 1.5)</small>
+
+            <label for="hours-note">Activity Note (optional)</label>
+            <input id="hours-note" name="note" type="text" placeholder="Homework help, museum visit…" />
+
+            <button class="btn" type="submit">Save Hours</button>
+          </form>
+
+          <div class="hours-summary" aria-live="polite">
+            <p><strong>Total this month:</strong> <span id="hours-total">0</span> hrs</p>
+            <ul id="hours-recent" class="recent-list" aria-label="Recent entries"></ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Upcoming Highlight</h3>
+          <p id="highlight-title"><strong>Mentor Info Night</strong> — Oct 10 • 6:00–7:30 PM</p>
+          <p><a class="btn" href="events.html">View all events</a></p>
+        </article>
+
+        <article class="card">
+          <h3>Helpful Resources</h3>
+          <ul class="link-list">
+            <li><a href="volunteers.html#training">Training Guides</a></li>
+            <li><a href="volunteers.html#safety">Safety &amp; Youth Protection</a></li>
+            <li><a href="youth.html#scholarships">Scholarships &amp; Programs</a></li>
+            <li><a href="contact.html">Request Support</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Privacy, data, and opt-out -->
+    <section id="privacy-statement" class="privacy" aria-labelledby="privacy-title">
+      <h2 id="privacy-title">Privacy &amp; Data</h2>
+      <p>We keep data collection minimal and transparent.</p>
+
+      <div class="privacy-box">
+        <h3>What We Save</h3>
+        <ul>
+          <li><strong>Theme preference</strong> (light/dark) so pages look the same next visit.</li>
+          <li><strong>Hours you log</strong> (on your device only).</li>
+          <li><strong>Saved events</strong> (on your device only).</li>
+        </ul>
+
+        <h3>Where &amp; How Long</h3>
+        <p>Stored in your browser’s Local Storage. Theme expires after 30 days; you can clear everything anytime.</p>
+
+        <div class="controls">
+          <button class="btn danger" type="button" onclick="clearAllLocalData()">Clear All Saved Preferences</button>
+          <label class="inline">
+            <input type="checkbox" id="theme-opt-out" onchange="toggleDataCollection(this.checked)">
+            Opt-out of saving theme preference
+          </label>
+        </div>
+        <p id="external-data-status" class="status">We don’t fetch external data; everything stays local to your browser.</p>
+      </div>
+    </section>
+
+    <section class="feedback" aria-labelledby="fb-title">
+      <h2 id="fb-title">Was this page helpful?</h2>
+      <div class="feedback-controls" role="group" aria-label="Page helpfulness">
+        <button class="btn" type="button" data-helpful="yes">Yes</button>
+        <button class="btn ghost" type="button" data-helpful="no">No</button>
+      </div>
+      <p id="feedback-msg" class="small" aria-live="polite"></p>
+      <details class="small">
+        <summary>What we changed based on feedback</summary>
+        <ul>
+          <li>Grouped resources for Bigs, Littles, and Families for faster scanning.</li>
+          <li>Added a quick hours logger and “save event” so fewer clicks.</li>
+          <li>Made the mobile menu simpler and larger hit-areas.</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="volunteers.html">Volunteers</a></li>
+        <li><a href="youth.html">Youth</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <p class="small">&copy; <span id="year"></span> Big Brothers Big Sisters of Colorado — Community Hub (Student Project)</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

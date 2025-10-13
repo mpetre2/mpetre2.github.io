@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Youth • Opportunities & Stories</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="light">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="theme-controls" role="group" aria-label="Theme">
+    <button class="theme-btn active" type="button" onclick="setTheme('light')">Light Mode</button>
+    <button class="theme-btn" type="button" onclick="setTheme('dark')">Dark Mode</button>
+    <button class="theme-btn" type="button" onclick="resetTheme()">Reset Theme</button>
+  </div>
+
+  <nav class="main-nav" aria-label="Primary">
+    <div class="nav-brand">Big Brothers Big Sisters • CO</div>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="volunteers.html">Volunteers</a></li>
+      <li><a href="youth.html" aria-current="page">Youth</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="page">
+    <header class="page-header">
+      <h1>For Youth &amp; Families</h1>
+      <p>Find programs, events, and stories from other Littles.</p>
+    </header>
+
+    <section class="grid-2">
+      <article class="card">
+        <h2>What to Expect</h2>
+        <ul>
+          <li>Regular meetups with your Big (safe, approved locations)</li>
+          <li>Fun activities that support your goals</li>
+          <li>Check-ins with program staff to support everyone</li>
+        </ul>
+      </article>
+
+      <article class="card" id="scholarships">
+        <h2>Scholarships &amp; Opportunities</h2>
+        <ul class="link-list">
+          <li><a href="#" rel="noopener">Local education grants</a></li>
+          <li><a href="#" rel="noopener">STEM clubs &amp; coding camps</a></li>
+          <li><a href="#" rel="noopener">Teen leadership workshops</a></li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="card" aria-labelledby="stories-title">
+      <h2 id="stories-title">Success Stories</h2>
+      <div class="stories" id="stories">
+        <figure class="story">
+          <figcaption><strong>Alex &amp; Jamie:</strong> From shy to student council! Regular goal-setting helped Alex speak up and run for office.</figcaption>
+        </figure>
+        <figure class="story">
+          <figcaption><strong>Maya &amp; Chris:</strong> One hour a week of homework help boosted grades and confidence.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="family-support-title">
+      <h2 id="family-support-title">Family Support</h2>
+      <p>Parents/Guardians are program partners. We’ll share schedules, expectations, and safety info.</p>
+      <ul>
+        <li>Clear communication and transparent planning</li>
+        <li>Easy ways to reach staff for questions</li>
+        <li>Events designed for the whole family</li>
+      </ul>
+      <p><a class="btn" href="contact.html">Ask a question</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="small">&copy; <span id="year"></span> BBBS Colorado — Community Hub</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+            <li><a href="events.html">Upcoming Events</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
