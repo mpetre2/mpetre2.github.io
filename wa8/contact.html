@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact • Ask a Question or Request Support</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="light">
@@ -36,29 +36,32 @@
       <p>We’re here to help—program questions, support, or getting started.</p>
     </header>
 
-    <section class="card">
+    <!-- Added heading to satisfy "section lacks heading" -->
+    <section class="card" aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title">Send Us a Message</h2>
+
       <form id="contact-form" action="https://formsubmit.co/mape5479@colorado.edu" method="POST" novalidate>
-        <input type="hidden" name="_next" value="contactmessage.html" />
-        <input type="hidden" name="_subject" value="New Contact Form Submission" />
+        <input type="hidden" name="_next" value="contactmessage.html">
+        <input type="hidden" name="_subject" value="New Contact Form Submission">
 
         <div class="grid-2">
           <p>
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required />
+            <input id="name" name="name" type="text" autocomplete="name" required>
           </p>
 
           <p>
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
+            <input id="email" name="email" type="email" autocomplete="email" required>
           </p>
         </div>
 
         <p>
           <span class="label">I’m a…</span>
-          <label class="inline"><input type="radio" name="role" value="Prospective Big" required /> Prospective Big</label>
-          <label class="inline"><input type="radio" name="role" value="Parent/Guardian" /> Parent/Guardian</label>
-          <label class="inline"><input type="radio" name="role" value="Youth" /> Youth</label>
-          <label class="inline"><input type="radio" name="role" value="Donor/Supporter" /> Donor/Supporter</label>
+          <label class="inline"><input type="radio" name="role" value="Prospective Big" required> Prospective Big</label>
+          <label class="inline"><input type="radio" name="role" value="Parent/Guardian"> Parent/Guardian</label>
+          <label class="inline"><input type="radio" name="role" value="Youth"> Youth</label>
+          <label class="inline"><input type="radio" name="role" value="Donor/Supporter"> Donor/Supporter</label>
         </p>
 
         <p>
