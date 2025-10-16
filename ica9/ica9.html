@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <style>
+        :root{
+            --speed: 0.7s;
+            --ease: ease-in-out;
+        }
+
+        body{
+            font-family: system-ui, sans-serif;
+            display: grid;
+            place-items: center;
+            margin: 0;
+            padding: 16px;
+            background: white;
+        }
+
+        .loader{
+            width: min(500px, 500px);
+            text-align: center;
+        }
+
+        .bar{
+            height: 12px;
+            background: black;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .fill{
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: blue;
+            border-radius: 999px;
+            animation: grow var(--speed) var(--ease) infinite alternate;
+        }
+
+        @keyframes grow{
+            from { width: 0%; }
+            to   { width: 100%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+        .fill {
+            animation: none;    
+            width: 50%;       
+            background: cyan;}
+        }
+
+    </style>
+
+    <div id="loader" class="loader">
+
+    <div 
+        class="bar" 
+        role="progressbar" 
+        aria-valuemin="0" 
+        aria-valuemax="100"
+    >
+      <span class="fill"></span>
+    </div>
+
+    <p class="status">Loading… please wait</p>
+
+  </div>
+</body>
+</html>

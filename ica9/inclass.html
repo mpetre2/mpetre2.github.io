@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .box{
+            border: 5px black solid;
+            background-color: red;
+            animation-name: moving-box; 
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            position: relative y;
+        }
+
+        @keyframes moving-box {
+            from {
+                left: 0px;
+                top: 0px;
+            }
+            50% {
+                left: 500px;
+                top: 0px;
+            }
+            75% {
+                left: 1000px;
+                top: 500px;
+            }
+            to {
+                left: 0px;
+                top: 0px;
+            }
+        }
+    </style>
+</body>
+</html>
