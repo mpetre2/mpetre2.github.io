@@ -10,16 +10,20 @@
 <body>
     <div class="app">
         <header>Random Useless Facts</header>
-        <section class="quotes">
-          <div class="quote-text" id="js-quote-text"></div>
+        <section class="quotes" aria-labelledby="quotes-heading">
+          <h2 id="quotes-heading" class="visually-hidden">Fact</h2>
+          <div class="quote-text" id="js-quote-text" aria-live="polite"></div>
           <div class="quote-text" id="js-answer-text"></div>
         </section>
-        <section class="controls" >
+
+        <section class="controls" aria-labelledby="controls-heading">
+          <h2 id="controls-heading" class="visually-hidden">Controls</h2>
+         
           <button type="button" id="js-new-quote" class="new-quote button">
             Give me a new fact!
           </button>
 
-          <a id=" "js-X" class="button X" href="https://twitter.com/intent/tweet" target="_blank" rel="noreferrer">
+          <a id="js-X" class="button X" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener noreferrer">
             Post this fact on X!
           </a>
           <!-- <a class="answer button" id="js-tweet" target="_blank" rel="noreferrer">Show me the answer!</a> -->
