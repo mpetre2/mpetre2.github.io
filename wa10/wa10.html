@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header>Random Useless Facts</header>
+        <section class="quotes">
+          <div class="quote-text" id="js-quote-text"></div>
+          <div class="quote-text" id="js-answer-text"></div>
+        </section>
+        <section class="controls" >
+          <button type="button" id="js-new-quote" class="new-quote button">
+            Give me a new fact!
+          </button>
+
+          <a id=" "js-X" class="button X" href="https://twitter.com/intent/tweet" target="_blank" rel="noreferrer">
+            Post this fact on X!
+          </a>
+          <!-- <a class="answer button" id="js-tweet" target="_blank" rel="noreferrer">Show me the answer!</a> -->
+        </section>
+      </div>
+
+      <div class="bottom-container">
+        <p class="bottom-text">My extension builds on the existing random trivia generator by connecting it to the Useless Facts API. This API delivers randomized and funny bits of information, and also includes the source (the link) of where it comes from. Along with that there is an option to directly go to the app “X” (which was originally twitter), where users can directly make a post. The goal here is to get them to have a direct outlet to post the useless fact that they just generated.</p>
+
+        <p class="bottom-text">I could imagine using an API in my critique project by using it to generate posts that appear on my redesigned Explore page. Rather than using a real social media feed, the API could pull random images or videos from themed datasets that match the topics a user selects (for example, “art,” “travel,” or “food”). This would simulate how Instagram recommends content, but in my design the user actively chooses the categories instead of the system deciding for them. Along with that this would randomize the users posts that are being presented. This helps everyone have an equal chance for their post to be displayed.  Using the API this way would help demonstrate how giving users control over what data drives their feed creates a fairer, more transparent experience.</p>
+      </div>
+     
+      <script src="wa10.js"></script>
+  </body>
+</html>
