@@ -1,0 +1,66 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 16px;
+  background: white;
+  color: black;
+}
+
+.panel {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.buttons {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+button {
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: black;
+  color: white;
+}
+
+button.secondary {
+    background: gray; 
+    color: white; 
+}
+
+.status { 
+    font-size: 12px; 
+    color: gray; 
+}
+
+#news { 
+    display: grid; 
+    gap: 10px; 
+}
+
+article {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+article h3 { 
+    margin: 0 0 4px 0; 
+    font-size: 16px; 
+}
+
+article p { margin: 0; }
+
+.meta { 
+    font-size: 12px; 
+    color: grey; 
+    margin-bottom: 6px; 
+}

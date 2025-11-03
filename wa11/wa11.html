@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>NYT Top Stories</h1>
+
+  <section class="panel">
+    <h2>Topics</h2>
+
+    <div id="topics">
+      <label><input type="checkbox" value="world" checked> World</label>
+      <label><input type="checkbox" value="technology" checked> Technology</label>
+      <label><input type="checkbox" value="business"> Business</label>
+      <label><input type="checkbox" value="sports"> Sports</label>
+      <label><input type="checkbox" value="science"> Science</label>
+    </div>
+
+    <div class="buttons">
+      <button id="saveBtn">Save Topics</button>
+      <button id="loadBtn">Refresh News</button>
+      <button id="clearBtn" class="secondary">Clear Saved Topics</button>
+      <span id="status" class="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <main id="news" aria-live="polite"></main>
+
+  <script src="app.js"></script>
+</body>
+</html>
