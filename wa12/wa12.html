@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link rel="stylesheet" href="wa12.css">
+</head>
+<body>
+    <h1>NYT Top Stories</h1>
+
+  <section class="panel" aria-labelledby="topics-heading">
+    <h2 id="topics-heading">Topics</h2>
+
+   <fieldset id="topics" aria-describedby="topics-help"> 
+    <legend class="sr-only">Choose sections to include</legend>
+
+    <div class="checkbox"></div>
+      <input type="checkbox" id="t-world" value="world" checked>
+      <label for="t-world">World</label>
+      </div>
+
+    <div class="checkbox">
+      <input type="checkbox" id="t-technology" value="technology" checked>
+      <label for="t-technology">Technology</label>
+    </div>
+
+    <div class="checkbox">
+      <input type="checkbox" id="t-business" value="business">
+      <label for="t-business">Business</label>
+    </div>
+
+    <div class="checkbox">
+      <input type="checkbox" id="t-sports" value="sports">
+      <label for="t-sports">Sports</label>
+    </div>
+
+    <div class="checkbox">
+      <input type="checkbox" id="t-science" value="science">
+      <label for="t-science">Science</label>
+    </div>
+
+    <div class="buttons">
+      <button id="saveBtn" type="button">Save Topics</button>
+      <button id="loadBtn" type="button">Refresh News</button>
+      <button id="clearBtn" class="secondary" type="button">Clear Saved Topics</button>
+      <span id="status" class="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <main id="news" aria-live="polite"></main>
+
+  <script src="wa12.js"></script>
+</body>
+</html>
