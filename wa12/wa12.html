@@ -12,13 +12,15 @@
   <section class="panel" aria-labelledby="topics-heading">
     <h2 id="topics-heading">Topics</h2>
 
-   <fieldset id="topics" aria-describedby="topics-help"> 
+    <p id="topics-help" class="sr-only">Select one or more topics to load headlines.</p>
+    
+    <fieldset id="topics" aria-describedby="topics-help"> 
     <legend class="sr-only">Choose sections to include</legend>
 
-    <div class="checkbox"></div>
+    <div class="checkbox">
       <input type="checkbox" id="t-world" value="world" checked>
       <label for="t-world">World</label>
-      </div>
+    </div>
 
     <div class="checkbox">
       <input type="checkbox" id="t-technology" value="technology" checked>
@@ -39,6 +41,7 @@
       <input type="checkbox" id="t-science" value="science">
       <label for="t-science">Science</label>
     </div>
+    </fieldset>
 
     <div class="buttons">
       <button id="saveBtn" type="button">Save Topics</button>
