@@ -1,0 +1,102 @@
+*{ box-sizing: border-box; }
+
+h1{
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  padding: 16px;
+  background: white;
+  color: black;
+}
+
+.panel {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.buttons {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+button {
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: black;
+  color: white;
+}
+
+button:hover {
+    cursor: pointer;
+    background: blue;
+    color: white;
+}
+
+button.secondary {
+    background: rgb(192, 8, 8); 
+    color: white; 
+}
+
+button.secondary:hover {
+    background: red; 
+    color: white; 
+}
+
+.status { 
+    font-size: 12px; 
+    color: black; 
+}
+
+#news { 
+    display: grid; 
+    gap: 10px; 
+}
+
+article {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+article h3 { 
+    margin: 0 0 4px 0; 
+    font-size: 16px; 
+}
+
+article p { margin: 0; }
+
+.meta { 
+    font-size: 12px; 
+    color: black; 
+    margin-bottom: 6px; 
+}
+
+#news{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+@media (min-width: 600px) {
+  #news {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  #news {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
